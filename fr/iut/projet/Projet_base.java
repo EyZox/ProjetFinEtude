@@ -75,7 +75,7 @@ public class Projet_base implements IWorkbenchWindowActionDelegate {
 
 	private void analyzeUnit(ICompilationUnit unit) {
 		System.out.println("TRACE:     analyzeUnit(" +unit.getElementName()+ ")");
-		ASTParser parser = ASTParser.newParser(AST.JLS3);
+		ASTParser parser = ASTParser.newParser(AST.JLS4);
 		parser.setKind(ASTParser.K_COMPILATION_UNIT);
 		parser.setSource(unit);
 		parser.setResolveBindings(true);
@@ -86,7 +86,8 @@ public class Projet_base implements IWorkbenchWindowActionDelegate {
 		for (Object c : ((CompilationUnit)unitAST).getCommentList()) {
 			Comment cc = (Comment) c;
 			System.out.println("----------");
-			System.out.println("Comment class:"+cc.getClass());
+			System.out.println("Comment class:"+cc.getClass().getName());
+			System.err.println(cc.getClass().getName().endsWith("Javadoc"));
 			System.out.println(cc.toString());
 			System.out.println("length="+cc.getLength());
 			int pos = cc.getStartPosition();
