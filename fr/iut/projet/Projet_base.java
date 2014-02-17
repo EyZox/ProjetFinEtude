@@ -88,7 +88,8 @@ public class Projet_base implements IWorkbenchWindowActionDelegate {
 		for (Object c : ((CompilationUnit)unitAST).getCommentList()) {
 			Comment cc = (Comment) c;
 			System.out.println("----------");
-			System.out.println("Comment class:"+cc.getClass());
+			System.out.println("Comment class:"+cc.getClass().getName());
+			System.err.println(cc.getClass().getName().endsWith("Javadoc"));
 			System.out.println(cc.toString());
 			System.out.println(cc.getAST());
 			System.out.println("length="+cc.getLength());
