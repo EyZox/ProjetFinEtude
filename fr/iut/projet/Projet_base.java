@@ -14,6 +14,8 @@ import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.Comment;
 import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.jdt.core.dom.ExpressionStatement;
+import org.eclipse.jdt.core.search.SearchMatch;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -75,7 +77,7 @@ public class Projet_base implements IWorkbenchWindowActionDelegate {
 
 	private void analyzeUnit(ICompilationUnit unit) {
 		System.out.println("TRACE:     analyzeUnit(" +unit.getElementName()+ ")");
-		ASTParser parser = ASTParser.newParser(AST.JLS3);
+		ASTParser parser = ASTParser.newParser(AST.JLS4);
 		parser.setKind(ASTParser.K_COMPILATION_UNIT);
 		parser.setSource(unit);
 		parser.setResolveBindings(true);
@@ -88,11 +90,13 @@ public class Projet_base implements IWorkbenchWindowActionDelegate {
 			System.out.println("----------");
 			System.out.println("Comment class:"+cc.getClass());
 			System.out.println(cc.toString());
+			System.out.println(cc.getAST());
 			System.out.println("length="+cc.getLength());
 			int pos = cc.getStartPosition();
 			System.out.println("start pos="+pos);
 			System.out.println("ligne="+((CompilationUnit)unitAST).getLineNumber(pos)+
 								" column="+((CompilationUnit)unitAST).getColumnNumber(pos));
+			
 		}
 	}
 
